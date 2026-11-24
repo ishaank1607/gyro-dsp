@@ -1,4 +1,4 @@
-# gyro-dsp-fpga
+# gyro-dsp
 
 A custom I2C master written in Verilog for a Basys 3 FPGA that reads an MPU6500 IMU directly, then filters the noisy accel/gyro data in fixed-point RTL.
 
