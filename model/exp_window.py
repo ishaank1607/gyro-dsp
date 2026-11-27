@@ -1,4 +1,4 @@
-# expirement 1 to find a tone
+# experiment 1 to find a tone
 
 import numpy as np
 import matplotlib.pyplot as plt
