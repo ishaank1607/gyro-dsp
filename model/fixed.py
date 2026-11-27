@@ -20,15 +20,16 @@ def remove_dc(frame):
     mean = (total + 128) >> 8 
     return np.clip(frame - mean, -32768, 32767)
 
-w_float = 0.5 * (1 - np.cos(2 * np.pi * n / (N)))
-w_q = to_q15(w_float)
+if __name__ == "__main__":
+    w_float = 0.5 * (1 - np.cos(2 * np.pi * n / (N)))
+    w_q = to_q15(w_float)
 
-x_int = np.round(12000 * np.sin(2 * np.pi * 50 * t) + dc).astype(np.int64)
+    x_int = np.round(12000 * np.sin(2 * np.pi * 50 * t) + dc).astype(np.int64)
 
-x_clean = remove_dc(x_int)
-y_int = q15_mult(x_clean, w_q)
-y_ref = (x_int - np.mean(x_int)) * w_float
-error = y_int - y_ref
+    x_clean = remove_dc(x_int)
+    y_int = q15_mult(x_clean, w_q)
+    y_ref = (x_int - np.mean(x_int)) * w_float
+    error = y_int - y_ref
 
-print(w_q[0], w_q[64], w_q[128])
-print(np.max(np.abs(error)))
+    print(w_q[0], w_q[64], w_q[128])
+    print(np.max(np.abs(error)))

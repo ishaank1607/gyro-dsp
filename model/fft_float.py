@@ -31,5 +31,6 @@ def fft(x):
                 A[top], A[bottom] = butterfly(A[top], A[bottom], W)
     return A
 
-x = np.random.default_rng(1).standard_normal(8)
-print(np.max(np.abs(fft(x) - np.fft.fft(x))))
+if __name__ == "__main__":
+    x = np.random.default_rng(1).standard_normal(256)
+    print(np.max(np.abs(fft(x) - np.fft.fft(x))))
