@@ -20,14 +20,13 @@ def fft(x):
         A[bit_reverse(i, bits)] = x[i]
 
     for stage in range(bits):
-        half = 1 << (bits - 1 - stage)
+        half = 1 << (stage)
         size = half << 1             
         for start in range(0, N, size):  
             for j in range(half):    
                 top = start + j
                 bottom = top + half
-                k = (bottom - start) >> (bits - stage)
-                print(stage, top, bottom, k)
+                k = (j) << (bits - 1 - stage)
                 W = np.exp(-2j * np.pi * k / N)
                 A[top], A[bottom] = butterfly(A[top], A[bottom], W)
     return A
